@@ -33,7 +33,7 @@ jobs:
         run: npm test
           
       - name: Archive Test Result
-        if: always() 
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Mocha-Test-Result
@@ -65,19 +65,25 @@ jobs:
           path: coverage
           retention-days: 5
 
-dev-deploy:
-  needs: docker
-  runs-on: ubuntu-latest
-  environment:
-    name: development
-  steps:
-    - uses: actions/checkout@v4
-    - uses: azure/setup-kubectl@v3
-      with:
-        version: v1.26.0
-    - uses: azure/k8s-set-context@v3
-      with:
-        method: kubeconfig
-        kubeconfig: '${{ secrets.KUBECONFIG }}'
-    - run: kubectl version --short -o yaml
+  dev-deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    environment:
+      name: development
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: v1.26.0
+
+      - name: Set Kubernetes Context
+        uses: azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: '${{ secrets.KUBECONFIG }}'
+
+      - name: Verify Kubernetes Version
+        run: kubectl version --short -o yaml

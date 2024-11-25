@@ -78,21 +78,10 @@ jobs:
       name: development
     steps:
       - uses: actions/checkout@v4
-      - uses: azure/setup-kubectl@v3
-        with:
-          version: v1.26.0
-      - uses: azure/k8s-set-context@v3
-        with:
-          method: kubeconfig
-          kubeconfig: '${{ secrets.KUBECONFIG }}'
-      - run: kubectl version --short -o yaml
-        continue-on-error: true
-        
-# Below codes are added to complete the task
+      
       - run: >
-          echo "INGRESS_IP=$(kubectl -n ingress-nginx get services
-          ingress-nginx-controller -o
-          jsonpath='{.status.loadBalancer.ingress[0].ip}')" >> $GITHUB_ENV
+          echo "INGRESS_IP=$(ip a )" >> $GITHUB_ENV
+          
       - uses: cschleiden/replace-tokens@v1
         with:
           tokenPrefix: '_{_'

@@ -1,6 +1,6 @@
 name: Solar System Workflow
 'on':
-  workflow_dispatch: null
+  workflow_dispatch: 
   push:
     branches:
       - main
@@ -102,3 +102,4 @@ jobs:
             }}
           INGRESS_IP: '${{ env.INGRESS_IP }}'
       - run: cat kubernetes/development/*.yaml
+    

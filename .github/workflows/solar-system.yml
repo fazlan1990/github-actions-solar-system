@@ -86,6 +86,8 @@ jobs:
           method: kubeconfig
           kubeconfig: '${{ secrets.KUBECONFIG }}'
       - run: kubectl version --short -o yaml
+        continue-on-error: true
+        
 # Below codes are added to complete the task
       - run: >
           echo "INGRESS_IP=$(kubectl -n ingress-nginx get services

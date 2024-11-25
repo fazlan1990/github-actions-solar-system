@@ -1,7 +1,3 @@
-Workflow file
-1.	This yaml has 2 jobs
-2.	Varibales has been defined in workflow level
-
 name: Solar System Workflow
 
 on: 

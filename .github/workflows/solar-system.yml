@@ -80,7 +80,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - run: >
-          echo "INGRESS_IP=$(ip a )" >> $GITHUB_ENV
+          echo "INGRESS_IP=$(echo faslan)" >> $GITHUB_ENV
           
       - uses: cschleiden/replace-tokens@v1
         with:

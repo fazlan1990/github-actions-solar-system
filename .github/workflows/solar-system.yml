@@ -63,6 +63,7 @@ jobs:
           echo "INGRESS_IP=$(echo faslan)" >> $GITHUB_ENV
       - run : echo $INGRESS_IP
       - run : echo $GITHUB_ENV
+      - run : echo "INGRESS_IP=$(echo faslan)"
           
       - uses: cschleiden/replace-tokens@v1
         with:
